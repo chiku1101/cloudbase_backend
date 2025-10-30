@@ -36,27 +36,30 @@ app.use(cors({
 // Body parser middleware
 app.use(express.json());
 
-// Import routes
-try {
-  const authRoutes = require('./src/routes/auth.routes');
-  const userRoutes = require('./src/routes/user.routes');
-  const jobRoutes = require('./src/routes/job.routes');
-  const applicationRoutes = require('./src/routes/application.routes');
-  const messageRoutes = require('./src/routes/message.routes');
-  const externalJobsRoutes = require('./src/routes/externalJobs.routes');
+// Import and use routes
+const authRoutes = require('./src/routes/auth.routes');
+const userRoutes = require('./src/routes/user.routes');
+const jobRoutes = require('./src/routes/job.routes');
+const applicationRoutes = require('./src/routes/application.routes');
+const messageRoutes = require('./src/routes/message.routes');
+const externalJobsRoutes = require('./src/routes/externalJobs.routes');
 
-  // Use routes
-  app.use('/api/auth', authRoutes);
-  app.use('/api/users', userRoutes);
-  app.use('/api/jobs', jobRoutes);
-  app.use('/api/applications', applicationRoutes);
-  app.use('/api/messages', messageRoutes);
-  app.use('/api/external-jobs', externalJobsRoutes);
-  
-  console.log('✅ Routes loaded successfully');
-} catch (error) {
-  console.error('❌ Error loading routes:', error);
-}
+// Use routes with error handling
+const mountRoute = (path, router) => {
+  try {
+    app.use(path, router);
+    console.log(`✅ Route mounted successfully: ${path}`);
+  } catch (error) {
+    console.error(`❌ Error mounting route ${path}:`, error);
+  }
+};
+
+mountRoute('/api/auth', authRoutes);
+mountRoute('/api/users', userRoutes);
+mountRoute('/api/jobs', jobRoutes);
+mountRoute('/api/applications', applicationRoutes);
+mountRoute('/api/messages', messageRoutes);
+mountRoute('/api/external-jobs', externalJobsRoutes);
 
 // Root route
 app.get('/', (req, res) => {
