@@ -2,7 +2,7 @@ services:
   - type: web
     name: cloudbase-backend
     env: node
-    buildCommand: npm install
+    buildCommand: npm ci && npm rebuild bcrypt --build-from-source
     startCommand: node server.js
     envVars:
       - key: NODE_ENV
