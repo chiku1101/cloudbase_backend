@@ -13,7 +13,7 @@ const app = express();
 const allowedOrigins = [
   'http://localhost:5173', 
   'http://localhost:3000',
-  'https://cloudbase-frontend-nezdfsqn3-chaitanya-sonars-projects.vercel.app',
+  'https://campus-edgee.vercel.app/',
   process.env.FRONTEND_URL
 ].filter(Boolean); // Remove undefined values
 
