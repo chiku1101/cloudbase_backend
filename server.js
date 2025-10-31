@@ -13,7 +13,7 @@ const app = express();
 const allowedOrigins = [
   'http://localhost:5173', 
   'http://localhost:3000',
-  'https://courageous-faun-dc6218.netlify.app',
+  'https://cloudbase-frontend-nezdfsqn3-chaitanya-sonars-projects.vercel.app/',
   process.env.FRONTEND_URL
 ].filter(Boolean); // Remove undefined values
 
